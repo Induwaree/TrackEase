@@ -48,7 +48,7 @@ const CustomerPortal = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 via-purple-200 to-indigo-300 relative overflow-hidden">
-      {/* Header / Top Navigation */}
+      {/* Header */}
       <motion.header
         className="flex justify-between items-center p-4 bg-gradient-to-r from-teal-400 via-blue-500 to-purple-600 shadow-xl rounded-b-lg z-10 relative"
         initial={{ opacity: 0, y: -50 }}
@@ -144,51 +144,39 @@ const CustomerPortal = () => {
       {/* Main Content */}
       <div className="flex justify-center pt-12 px-6">
         <div className="max-w-6xl w-full space-y-12">
-          {/* Navigation buttons */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            {[
-              {
-                name: "Track Delivery",
-                key: "TrackDelivery",
-                icon: <FaTruck />,
-              },
-              {
-                name: "Submit Feedback",
-                key: "SubmitFeedback",
-                icon: <FaComment />,
-              },
-              { name: "Rate Driver", key: "RateDriver", icon: <FaStar /> },
-              { name: "Notifications", key: "Notifications", icon: <FaBell /> },
-            ].map((tab) => (
-              <motion.button
-                key={tab.key}
-                className={`flex flex-col items-center justify-center py-6 px-8 rounded-2xl shadow-lg text-lg transition-all ease-in-out duration-300 transform ${
-                  activeTab === tab.key
-                    ? "bg-gradient-to-r from-teal-400 to-blue-500 text-white scale-105"
-                    : "bg-white text-gray-800 hover:bg-gray-50 hover:shadow-xl"
-                }`}
-                onClick={() => setActiveTab(tab.key)}
-                whileTap={{ scale: 0.95 }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <motion.div
-                  className="text-4xl mb-2"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
+          {/* Tabs Navigation */}
+          <div className="bg-white shadow-md sticky top-0 z-10">
+            <div className="flex justify-around p-4">
+              {[
+                { name: "Track Delivery", key: "TrackDelivery", icon: <FaTruck /> },
+                { name: "Submit Feedback", key: "SubmitFeedback", icon: <FaComment /> },
+                { name: "Rate Driver", key: "RateDriver", icon: <FaStar /> },
+                { name: "Notifications", key: "Notifications", icon: <FaBell /> },
+              ].map((tab) => (
+                <motion.button
+                  key={tab.key}
+                  className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition ${
+                    activeTab === tab.key
+                      ? "bg-blue-600 text-white shadow-lg scale-105"
+                      : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+                  }`}
+                  onClick={() => setActiveTab(tab.key)}
+                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.05 }}
                 >
-                  {tab.icon}
-                </motion.div>
-                <span className="font-medium">{tab.name}</span>
-              </motion.button>
-            ))}
+                  <span className="text-xl">{tab.icon}</span>
+                  <span>{tab.name}</span>
+                </motion.button>
+              ))}
+            </div>
           </div>
 
           {/* Tab Content */}
           <motion.div
-            className="bg-white rounded-3xl shadow-xl p-10 transition-all ease-in-out duration-500"
+            className="p-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.5 }}
           >
             {renderTabContent()}
           </motion.div>
@@ -205,6 +193,7 @@ const CustomerPortal = () => {
       >
         <motion.div className="flex items-center space-x-4">
           <FaTruck size={40} className="text-gray-700" />
+          <span className="text-lg">Delivery in Progress</span>
         </motion.div>
       </motion.div>
     </div>
