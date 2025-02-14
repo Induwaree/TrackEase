@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaBell } from "react-icons/fa";
 
 const Notifications = () => {
   const [notifications] = useState([
@@ -8,19 +9,37 @@ const Notifications = () => {
   ]);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Notifications</h2>
-      <ul>
+    <div className="bg-gradient-to-br from-gray-50 to-purple-100 min-h-screen p-6">
+      {/* Header */}
+      <div className="flex items-center space-x-4 mb-6">
+        <div className="p-3 rounded-full bg-purple-600 text-white">
+          <FaBell size={24} />
+        </div>
+        <h2 className="text-3xl font-extrabold text-gray-800 tracking-wide">
+          Notifications
+        </h2>
+      </div>
+
+      {/* Notification List */}
+      <div className="space-y-4">
         {notifications.length > 0 ? (
           notifications.map((notification, index) => (
-            <li key={index} className="mb-2">
-              {notification}
-            </li>
+            <div
+              key={index}
+              className="flex items-center p-4 bg-white rounded-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 border border-gray-200"
+            >
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-200 text-purple-600 mr-4">
+                <FaBell size={20} />
+              </div>
+              <p className="text-gray-800 font-medium text-lg">{notification}</p>
+            </div>
           ))
         ) : (
-          <p>No new notifications</p>
+          <p className="text-gray-600 text-center text-lg">
+            No new notifications
+          </p>
         )}
-      </ul>
+      </div>
     </div>
   );
 };
