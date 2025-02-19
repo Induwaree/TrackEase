@@ -72,8 +72,6 @@ const CustomerPortal = () => {
           </h2>
         </motion.header>
 
-
-
         {/* Tab Content */}
         <motion.div
           className="flex-1 p-6"
